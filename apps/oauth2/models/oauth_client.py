@@ -17,3 +17,11 @@ class OauthClient(BaseModel, ClientMixin):
 
     def __str__(self):
         return self.name
+
+
+class OauthClientUuid(BaseModel):
+    client = models.ForeignKey(OauthClient, on_delete=models.CASCADE)
+    uuid = models.UUIDField()
+
+    def __str__(self):
+        return f'{self.client.name}'

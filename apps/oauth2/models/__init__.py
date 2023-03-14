@@ -1,2 +1,2 @@
 from .base import BaseModel
-from .oauth_client import OauthClient
+from .oauth_client import OauthClient, OauthClientUuid
