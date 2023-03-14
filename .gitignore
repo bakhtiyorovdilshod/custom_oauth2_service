@@ -1,0 +1,34 @@
+.vscode/
+# pyenv
+.python-version
+
+# media
+media/
+
+*.log
+.DS_Store
+
+# Environments
+.idea
+__pypackages__/
+
+__pycache__/
+.myenv
+.env
+.env.db
+.env.docker
+.venv
+.mypy_cache
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+dbdata/
+en
+local_settings*
+todo.txt
+
+# Celery stuff
+celerybeat-schedule*
+celerybeat.pid
