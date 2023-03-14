@@ -16,8 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from api.oauth2.views.client import UserLoginAPIView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/oauth/', include('api.oauth2.urls'))
+    path('api/v1/oauth/', include('api.oauth2.urls')),
+    path('api/v1/login/', UserLoginAPIView.as_view())
 
 ]
