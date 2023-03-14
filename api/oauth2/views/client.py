@@ -6,7 +6,7 @@ from api.oauth2.serializers.client import UserLoginSerializer
 
 class UserLoginAPIView(APIView):
     def post(self, request):
-        serializer = UserLoginSerializer(data=request.data)
+        serializer = UserLoginSerializer(data=request.data, context={'request': request})
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)

@@ -13,7 +13,7 @@ def now_timestamp():
 
 class OAuth2Token(BaseModel, TokenMixin):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    client_id = models.CharField(max_length=48, db_index=True)
+    client_id = models.CharField(max_length=48, db_index=True, null=True)
     token_type = models.CharField(max_length=40)
     access_token = models.CharField(max_length=255, unique=True, null=False)
     refresh_token = models.CharField(max_length=255, db_index=True)
@@ -21,6 +21,7 @@ class OAuth2Token(BaseModel, TokenMixin):
     revoked = models.BooleanField(default=False)
     issued_at = models.IntegerField(null=False, default=now_timestamp)
     expires_in = models.IntegerField(null=False, default=0)
+    is_alive = models.BooleanField(default=True)
 
     def get_client_id(self):
         return self.client_id
@@ -33,3 +34,9 @@ class OAuth2Token(BaseModel, TokenMixin):
 
     def get_expires_at(self):
         return self.issued_at + self.expires_in
+
+    def get_is_alive(self):
+        return (self.issued_at + self.expires_in) < int(time.time())
+
+    def __str__(self):
+        return self.access_token
